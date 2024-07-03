@@ -13,6 +13,8 @@ https://www.python.org/downloads/
 How to contribute to the project?
 To begin with, this project meets all the functional standards that should have a maze but still has several points of improvement such as textures, interactivity with the user, you can also make a start menu and you can also work with more sounds for each situation within the maze.
 
+Here is a link to a Youtube video where you can see the execution of our project and how to check if everything is installed correctly: 
+
 The authors of this project are:
 Jorge Fonseca
 Engel Peña
