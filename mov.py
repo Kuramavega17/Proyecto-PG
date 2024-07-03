@@ -11,7 +11,7 @@ def handle_events(camera):
     if keys[pygame.K_a]:
         camera.move('left', 0.025)
     if keys[pygame.K_d]:
-        camera.move('right', 0.025)
+        camera.move('right', 0.0025)
     if keys[pygame.K_SPACE]:
        camera.move('up', 0.1)
     if keys[pygame.K_LSHIFT]:
