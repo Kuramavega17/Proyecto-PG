@@ -28,3 +28,10 @@ To begin with, this project meets all the functional standards that should have 
 - Engel Peña
 - Kener Madriz
 
+
+## 🔗 Links
+
+https://code.visualstudio.com/download
+
+https://www.python.org/downloads/
+
