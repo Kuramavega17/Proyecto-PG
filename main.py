@@ -12,21 +12,15 @@ from OBJ import OBJ
 import tkinter as tk
 from tkinter import messagebox
 
-
-
-
 def mostrar_ventana_perder():
     root = tk.Tk()
     root.withdraw()  # Oculta la ventana principal de Tkinter
-    messagebox.showinfo("Juego Terminado", "¡Has perdido el juego!")
+    messagebox.showinfo("Juego Terminado", "¡Has Perdido el juego!")
     root.destroy()  # Destruye la ventana principal de Tkinter
-    pygame.quit()
-    sys.exit()
-    
 def mostrar_ventana_ganar():
     root = tk.Tk()
     root.withdraw()  # Oculta la ventana principal de Tkinter
-    messagebox.showinfo("Juego Terminado", "¡Has GANADO ganado el juego!")
+    messagebox.showinfo("Juego Terminado", "¡Has GANADO el juego!")
     root.destroy()  # Destruye la ventana principal de Tkinter
     pygame.quit()
     sys.exit()
@@ -121,7 +115,7 @@ def labBin(archivo):
 
 def main():
     pygame.init()
-    screen = pygame.display.set_mode((800, 600), DOUBLEBUF | OPENGL) #Dimension Ventana
+    screen = pygame.display.set_mode((900, 600), DOUBLEBUF | OPENGL) #Dimension Ventana
     pygame.display.set_caption("Stronghold for Minecraft") #Label
     glEnable(GL_DEPTH_TEST) #Profundidad
     glDepthFunc(GL_LESS) #Profundidad
@@ -186,8 +180,6 @@ def main():
     cofre.scale=(1, 1., 1)
     ghast.position = (3, 1, 13)
     ghast.scale=(2.0, 4.0, 2.0)
-    #golem.position = (1, 0, 9)
-    #golem.position = (1, 0, 9)
     
     pygame.mixer.music.load('Textura/cueva.mp3')
     pygame.mixer.music.play()
@@ -207,40 +199,36 @@ def main():
     pisoAE, xA, xB, yA, yB = piso(xA, xB, yA, yB, 0)
     pisoBE, xA, xB, yA, yB = piso(xA, xB, yA, yB, 1)
     
+    
+    #techo 1ra estructura
     pisoDA = [
         #x  y  z
         (0, 4, 0), (0, 4, 10), (4, 4, 10), (4, 4, 0),
     ]
+    #piso 2da estructura
     pisoDB = [
         #x  y  z
-        (0, 0, 11), (4, 0, 11), (4, 0, 20), (0, 0, 20),
+        (0, 0, 12), (4, 0, 12), (4, 0, 20), (0, 0, 20),
     ]
+    #techo 2da estructura
+    pisoDB0 = [
+        #x  y  z
+        (0, 4, 12), (4, 4, 12), (4, 4, 20), (0, 4, 20),
+    ]
+    #lava
     pisoDC = [
         #x  y  z
         (1, 1, 1),(1, 1, 2),  (2, 1, 2),(2, 1, 1), 
     ]
-    
-    #    wallZ1=pared(4,0,13,-2,0,1)
-    #wallZ10=pared(4,0,14,-2,0,1)
-    #wallZ11=pared(4,0,13,0,1,1)
-    #wallZ12=pared(2,0,13,0,1,1)
-    
-    #wallZ4=pared(0,0,16,2,0,1)
-    #wallZ40=pared(0,0,16,0,1,1)
-    #wallZ41=pared(2,0,16,0,1,1)
-    #wallZ42=pared(0,0,17,2,0,1)
+    #agua1
     pisoDD =[
         (2, 1, 13),(4, 1, 13),(4, 1, 14),(2, 1, 14), 
     ]
+    #agua2
     pisoDE =[
         (0, 1, 16),(2, 1, 16),(2, 1, 17),(0, 1, 17), 
     ]
-    
-    #wallO=pared(1,0,18,1,0,1)
-    #wallP=pared(1,0,18,0,1,1)
-    #wallQ=pared(1,0,19,1,0,1)
-    #wallR=pared(2,0,18,0,1,1)
-    
+    #altar
     pisoDF =[
         (1, 1, 18),(2, 1, 18),(2, 1, 19),(1, 1, 19), 
     ]
@@ -270,10 +258,10 @@ def main():
     wallR=pared(2,0,18,0,1,1)
     
     #cofre
-    wallC1=pared(1,0,9,2,0,1)
-    wallC2=pared(1,0,10,2,0,1)
-    wallC3=pared(1,0,9,0,1,1)
-    wallC4=pared(3,0,9,0,1,1)
+    #wallC1=pared(1,0,9,2,0,1)
+    #wallC2=pared(1,0,10,2,0,1)
+    #wallC3=pared(1,0,9,0,1,1)
+    #wallC4=pared(3,0,9,0,1,1)
     
     #Lava
     wallS=pared(2,0,1,0,1,1)
@@ -298,7 +286,7 @@ def main():
     wallZ41=pared(2,0,16,0,1,1)
     wallZ42=pared(0,0,17,2,0,1)
 
-    w = wallA+wallB+wallC+wallD+wallE+wallF+wallG+wallH+wallI+wallJ+wallK+wallM+wallN+wallC1+wallC2+wallC3+wallC4
+    w = wallA+wallB+wallC+wallD+wallE+wallF+wallG+wallH+wallI+wallJ+wallK+wallM+wallN
     l=wallS+wallS1+wallS2+wallS3
     e=wallO+wallP+wallQ+wallR
     s2=wallX+wallY+wallZ+wallZ0
@@ -394,6 +382,7 @@ def main():
         
         glBindTexture(GL_TEXTURE_2D,pisoEnd)
         renPiso(pisoDB, tex_coords)
+        renPiso(pisoDB0, tex_coords)
         
         glBindTexture(GL_TEXTURE_2D,wall)
         renPiso(w, tex_coords)
@@ -414,9 +403,14 @@ def main():
         golem2.render()
         cofre.render()
         ghast.render()
-        
-        if ((camera.pos[0] > 2 and camera.pos[0] < 4) and (camera.pos[2] > 13 and camera.pos[2] < 14)) or ((camera.pos[0] > 0 and camera.pos[0] < 2) and (camera.pos[2] > 16 and camera.pos[2] < 17)):
+        if (camera.pos[0] > 2 and camera.pos[0] < 4) and (camera.pos[2] > 13 and camera.pos[2] < 14):
             mostrar_ventana_perder()
+            camera.pos[0] = 3.5
+            camera.pos[2] = 0.5
+        if (camera.pos[0] > 0 and camera.pos[0] < 2) and (camera.pos[2] > 16 and camera.pos[2] < 17):
+            mostrar_ventana_perder()
+            camera.pos[0] = 3.5
+            camera.pos[2] = 0.5
 
         if (camera.pos[0] > 1 and camera.pos[0] < 3) and (camera.pos[2] > 9 and camera.pos[2] < 10):
             camera.pos[0] = 0.5
@@ -427,6 +421,8 @@ def main():
             mostrar_ventana_ganar()
         if (camera.pos[0] > 1 and camera.pos[0] < 2) and (camera.pos[2] > 1 and camera.pos[2] < 2):
             mostrar_ventana_perder()
+            camera.pos[0] = 3.5
+            camera.pos[2] = 0.5
         
         if (round(camera.pos[0]) - camera.pos[0]) > 0: #Esta en la parte arriba del bloque
             if (round(camera.pos[2]) - camera.pos[2]) > 0: #Esta del lado izquierdo del bloque
